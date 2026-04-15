@@ -1,0 +1,47 @@
+config_version = "0"
+
+[settings]
+root = true
+
+exclude_patterns = [
+  "target/",
+]
+
+[plugins.releases]
+clippy = "0.1.0"
+rustfmt = "0.1.0"
+trufflehog = "3.63.11"
+markdownlint = "0.39.0"
+osv-scanner = "1.8.0"
+
+[plugins.enabled]
+
+[[plugins.enabled]]
+name = "clippy"
+mode = "comment"
+
+[[plugins.enabled]]
+name = "rustfmt"
+mode = "comment"
+
+[[plugins.enabled]]
+name = "trufflehog"
+mode = "block"
+
+[[plugins.enabled]]
+name = "markdownlint"
+mode = "comment"
+
+[[plugins.enabled]]
+name = "osv-scanner"
+mode = "block"
+
+[[triage]]
+plugins = ["clippy"]
+rules = ["clippy::complexity"]
+set.mode = "monitor"
+
+[[triage]]
+plugins = ["clippy"]
+rules = ["clippy::correctness"]
+set.mode = "block"
