@@ -1,40 +1,39 @@
+# This configuration was generated with the setup-qlty-toml skill.
 config_version = "0"
 
-[settings]
-root = true
-
 exclude_patterns = [
-  "target/",
+  "target/**",
 ]
 
-[plugins.releases]
-clippy = "0.1.0"
-rustfmt = "0.1.0"
-trufflehog = "3.63.11"
-markdownlint = "0.39.0"
-osv-scanner = "1.8.0"
+[smells]
+mode = "comment"
 
-[plugins.enabled]
+# Required — points to the built-in Qlty plugin registry.
+[[source]]
+name = "default"
+default = true
 
-[[plugins.enabled]]
+# Single config covers all workspace crates (serde, serde_core, serde_derive, etc.)
+# Do NOT scope with prefix for same-language Rust workspaces.
+[[plugin]]
 name = "clippy"
 mode = "comment"
 
-[[plugins.enabled]]
+[[plugin]]
 name = "rustfmt"
 mode = "comment"
 
-[[plugins.enabled]]
+[[plugin]]
 name = "trufflehog"
 mode = "block"
 
-[[plugins.enabled]]
-name = "markdownlint"
-mode = "comment"
-
-[[plugins.enabled]]
+[[plugin]]
 name = "osv-scanner"
 mode = "block"
+
+[[plugin]]
+name = "markdownlint"
+mode = "comment"
 
 [[triage]]
 plugins = ["clippy"]
